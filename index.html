@@ -253,185 +253,9 @@
     .pill-tab { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--surface-2); font-size: 12px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.15s; font-family: inherit; }
     .pill-tab.active { background: var(--primary); border-color: var(--primary); color: #0c1510; }
 
-    /* ===== MEAL PREP VIEW ===== */
-    .mp-topbar { display: flex; align-items: flex-start; justify-content: space-between; padding: 16px 16px 8px; }
-    .mp-title { font-size: 22px; font-weight: 800; color: var(--text); }
-    .mp-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
-
-    /* ===== DAY TABS ===== */
-    .day-tabs { display: flex; gap: 6px; padding: 0 12px 12px; overflow-x: auto; scrollbar-width: none; }
-    .day-tabs::-webkit-scrollbar { display: none; }
-    .day-tab {
-      flex-shrink: 0; padding: 7px 14px; border-radius: 20px;
-      border: 1.5px solid var(--border); background: var(--surface-2);
-      font-size: 12px; font-weight: 700; color: var(--text-muted);
-      cursor: pointer; transition: all 0.15s; font-family: inherit;
-      position: relative;
-    }
-    .day-tab.active { background: var(--primary); border-color: var(--primary); color: #0c1510; }
-    .day-tab.has-meals { border-color: var(--primary); color: var(--primary); }
-    .day-tab.active.has-meals { background: var(--primary); color: #0c1510; }
-    .day-dot {
-      position: absolute; top: 4px; right: 4px;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--primary); display: none;
-    }
-    .day-tab.has-meals .day-dot { display: block; }
-    .day-tab.active .day-dot { background: #0c1510; }
-
-    /* ===== DAY PLAN VIEW ===== */
-    .day-banner {
-      margin: 0 12px 10px; padding: 12px 14px;
-      background: var(--primary-pale); border: 1px solid var(--border);
-      border-left: 3px solid var(--primary); border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .day-banner-text { font-size: 13px; font-weight: 600; color: var(--primary); }
-    .day-banner-sub  { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
-    .assign-btn {
-      background: var(--primary); color: #0c1510; border: none;
-      border-radius: 8px; padding: 7px 12px; font-size: 12px; font-weight: 700;
-      cursor: pointer; white-space: nowrap; font-family: inherit; flex-shrink: 0;
-    }
-    .assign-btn:active { background: var(--primary-light); }
-    .day-meal-card {
-      display: flex; align-items: center; gap: 14px;
-      background: var(--surface); border-radius: var(--radius);
-      padding: 13px 14px; margin: 0 12px 8px;
-      border: 1px solid var(--border); cursor: pointer; transition: border-color 0.15s;
-    }
-    .day-meal-card:active { border-color: var(--primary); }
-    .day-remove-btn {
-      background: none; border: 1.5px solid var(--border); border-radius: 8px;
-      padding: 5px 9px; font-size: 13px; cursor: pointer; color: var(--text-muted);
-      flex-shrink: 0; transition: all 0.15s; font-family: inherit;
-    }
-    .day-remove-btn:hover { border-color: var(--danger); color: var(--danger); }
-    .shop-day-btn {
-      margin: 4px 12px 12px; width: calc(100% - 24px); padding: 12px;
-      background: var(--primary-pale); color: var(--primary);
-      border: 1.5px solid var(--primary); border-radius: var(--radius);
-      font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit;
-      transition: all 0.15s;
-    }
-    .shop-day-btn:hover { background: var(--primary); color: #0c1510; }
-
-    /* ===== ASSIGN SHEET ===== */
-    .assign-meal-list { display: flex; flex-direction: column; }
-    .assign-meal-row {
-      display: flex; align-items: center; gap: 14px;
-      padding: 13px 20px; border-bottom: 1px solid var(--border);
-      cursor: pointer; transition: background 0.1s;
-    }
-    .assign-meal-row:last-child { border-bottom: none; }
-    .assign-meal-row:active { background: var(--surface-2); }
-    .assign-check {
-      width: 22px; height: 22px; border-radius: 50%;
-      border: 2px solid var(--border); display: flex; align-items: center;
-      justify-content: center; flex-shrink: 0; transition: all 0.2s;
-      background: var(--surface-2);
-    }
-    .assign-check.checked { background: var(--primary); border-color: var(--primary); }
-    .assign-check-icon { font-size: 11px; color: #0c1510; display: none; }
-    .assign-check.checked .assign-check-icon { display: block; }
-    .assign-meal-info { flex: 1; }
-    .assign-meal-name { font-size: 15px; font-weight: 600; color: var(--text); }
-    .assign-meal-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
-    .meal-card {
-      display: flex; align-items: center; gap: 14px;
-      background: var(--surface); border-radius: var(--radius);
-      padding: 14px 14px; margin: 0 12px 8px;
-      border: 1px solid var(--border); cursor: pointer;
-      transition: border-color 0.15s;
-    }
-    .meal-card:active { border-color: var(--primary); }
-    .meal-emoji-wrap { width: 46px; height: 46px; border-radius: 12px; background: var(--primary-pale); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
-    .meal-card-info { flex: 1; min-width: 0; }
-    .meal-name { font-size: 16px; font-weight: 700; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .meal-meta { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
-    .meal-progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden; }
-    .meal-progress-fill { height: 100%; background: var(--primary); border-radius: 2px; transition: width 0.3s; }
-    .meal-card-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
-    .meal-action-btn { background: none; border: 1.5px solid var(--border); border-radius: 8px; padding: 5px 8px; font-size: 14px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
-    .meal-action-btn.shop { border-color: var(--primary); color: var(--primary); background: var(--primary-pale); }
-    .meal-action-btn.del { color: var(--text-muted); }
-    .meal-action-btn:active { opacity: 0.7; }
-
-    /* ===== MEAL DETAIL SHEET ===== */
-    .meal-detail-meta { display: flex; align-items: center; gap: 12px; padding: 16px 20px 4px; }
-    .meal-detail-emoji { width: 52px; height: 52px; border-radius: 14px; background: var(--primary-pale); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
-    .meal-detail-info { flex: 1; }
-    .meal-detail-name { font-size: 20px; font-weight: 800; color: var(--text); }
-    .meal-detail-progress { font-size: 13px; color: var(--text-muted); margin-top: 3px; }
-    .meal-section-label { padding: 14px 20px 8px; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-    .ingredient-row {
-      display: flex; align-items: center; gap: 12px;
-      padding: 11px 20px; border-bottom: 1px solid var(--border);
-      transition: background 0.1s;
-    }
-    .ingredient-row:last-child { border-bottom: none; }
-    .ing-check {
-      width: 24px; height: 24px; border-radius: 50%;
-      border: 2px solid var(--border); display: flex;
-      align-items: center; justify-content: center; flex-shrink: 0;
-      cursor: pointer; transition: all 0.2s; background: var(--surface-2);
-    }
-    .ing-check.in-stock { background: var(--primary); border-color: var(--primary); }
-    .ing-check-icon { font-size: 11px; color: #0c1510; display: none; }
-    .ing-check.in-stock .ing-check-icon { display: block; }
-    .ing-info { flex: 1; min-width: 0; }
-    .ing-name { font-size: 14px; font-weight: 500; color: var(--text); }
-    .ing-name.out-of-stock { color: var(--text-muted); }
-    .ing-qty { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
-    .ing-add-btn { background: none; border: 1.5px solid var(--border); border-radius: 7px; padding: 4px 10px; font-size: 11px; font-weight: 700; color: var(--text-muted); cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: inherit; transition: all 0.15s; }
-    .ing-add-btn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-pale); }
-    .ing-del-btn { background: none; border: none; font-size: 14px; cursor: pointer; padding: 4px; color: var(--text-muted); opacity: 0.35; flex-shrink: 0; }
-    .ing-del-btn:active { opacity: 1; }
-
-    /* Add ingredient row */
-    .add-ing-row { display: flex; align-items: center; gap: 10px; padding: 12px 20px 8px; }
-    .add-ing-input {
-      flex: 1; padding: 10px 12px; border: 1.5px solid var(--border);
-      border-radius: var(--radius-sm); font-size: 15px; font-family: inherit;
-      background: var(--surface-2); color: var(--text); outline: none;
-      -webkit-appearance: none;
-    }
-    .add-ing-input:focus { border-color: var(--primary); }
-    .add-ing-btn {
-      padding: 10px 14px; background: var(--primary); color: #0c1510;
-      border: none; border-radius: var(--radius-sm); font-size: 14px;
-      font-weight: 700; cursor: pointer; white-space: nowrap;
-      font-family: inherit; flex-shrink: 0;
-    }
-    .add-ing-btn:active { background: var(--primary-light); }
-
-    .shop-missing-btn {
-      margin: 12px 20px; width: calc(100% - 40px); padding: 13px;
-      background: var(--primary-pale); color: var(--primary);
-      border: 1.5px solid var(--primary); border-radius: var(--radius);
-      font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit;
-      transition: all 0.15s;
-    }
-    .shop-missing-btn:hover { background: var(--primary); color: #0c1510; }
-    .shop-missing-btn:active { opacity: 0.8; }
-
-    /* Meal emoji picker */
-    .emoji-picker { display: flex; flex-wrap: wrap; gap: 8px; padding: 4px 0; }
-    .emoji-option { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 22px; border-radius: 10px; border: 1.5px solid var(--border); cursor: pointer; transition: all 0.15s; background: var(--surface-2); }
-    .emoji-option.selected { border-color: var(--primary); background: var(--primary-pale); }
-
-    /* Ing suggestions */
-    .ing-suggestions { background: var(--surface-2); border: 1.5px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; margin: 0 20px 8px; display: none; }
-    .ing-suggestions.visible { display: block; }
-    .ing-sug-item { padding: 10px 14px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); color: var(--text); }
-    .ing-sug-item:last-child { border-bottom: none; }
-    .ing-sug-item:active { background: var(--border); }
-    .ing-sug-cat { font-size: 11px; color: var(--text-muted); }
-
     /* ===== ANIMATIONS ===== */
     @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-    .category-group, .inv-item, .meal-card, .ingredient-row { animation: fadeSlideIn 0.18s ease; }
+    .category-group, .inv-item { animation: fadeSlideIn 0.18s ease; }
     .item-card { animation: fadeSlideIn 0.15s ease; }
     /* ===== LOADING SCREEN ===== */
     #loadingScreen {
@@ -520,27 +344,6 @@
       <div id="inventory-container"></div>
     </div>
 
-    <!-- MEAL PREP VIEW -->
-    <div id="mealprep-view" class="view">
-      <div class="mp-topbar">
-        <div>
-          <div class="mp-title">🍳 Meal Prep</div>
-          <div class="mp-subtitle" id="mp-subtitle"></div>
-        </div>
-      </div>
-      <!-- Day tabs -->
-      <div class="day-tabs" id="dayTabs">
-        <button class="day-tab active" data-day="all">All Meals</button>
-        <button class="day-tab" data-day="monday">Mon<span class="day-dot"></span></button>
-        <button class="day-tab" data-day="tuesday">Tue<span class="day-dot"></span></button>
-        <button class="day-tab" data-day="wednesday">Wed<span class="day-dot"></span></button>
-        <button class="day-tab" data-day="thursday">Thu<span class="day-dot"></span></button>
-        <button class="day-tab" data-day="friday">Fri<span class="day-dot"></span></button>
-        <button class="day-tab" data-day="saturday">Sat<span class="day-dot"></span></button>
-        <button class="day-tab" data-day="sunday">Sun<span class="day-dot"></span></button>
-      </div>
-      <div id="mealprep-container"></div>
-    </div>
   </main>
 
   <!-- BOTTOM NAV -->
@@ -550,9 +353,6 @@
     </button>
     <button class="nav-btn" data-view="inventory">
       <span class="nav-icon">📦</span>Inventory
-    </button>
-    <button class="nav-btn" data-view="mealprep">
-      <span class="nav-icon">🍳</span>Meal Prep
     </button>
   </nav>
 
@@ -629,82 +429,6 @@
     </div>
   </div>
 
-  <!-- ===== ASSIGN MEAL TO DAY SHEET ===== -->
-  <div class="sheet" id="assignSheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-header">
-      <span class="sheet-title" id="assignSheetTitle">Plan Day</span>
-      <button class="sheet-close" id="assignSheetClose">✕</button>
-    </div>
-    <div style="padding:10px 16px 0;">
-      <button class="btn-full" id="assignCreateMealBtn" style="background:var(--surface-2);border:1.5px dashed var(--primary);color:var(--primary);font-weight:600;font-size:14px;padding:10px;border-radius:12px;">＋ Create New Meal</button>
-    </div>
-    <div class="sheet-body" style="padding:0">
-      <div class="assign-meal-list" id="assignMealList"></div>
-    </div>
-    <div class="sheet-footer">
-      <button class="btn-full primary" id="assignDoneBtn">Done</button>
-    </div>
-  </div>
-
-  <!-- ===== CREATE MEAL SHEET ===== -->
-  <div class="sheet" id="createMealSheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-header">
-      <span class="sheet-title">New Meal</span>
-      <button class="sheet-close" id="createMealClose">✕</button>
-    </div>
-    <div class="sheet-body">
-      <div class="form-group">
-        <label class="form-label">Meal Name</label>
-        <input class="form-input" id="mealNameInput" placeholder="e.g. Pasta Alla Vodka" autocomplete="off" />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Emoji</label>
-        <div class="emoji-picker" id="emojiPicker">
-          <div class="emoji-option selected" data-emoji="🍝">🍝</div>
-          <div class="emoji-option" data-emoji="🥗">🥗</div>
-          <div class="emoji-option" data-emoji="🍲">🍲</div>
-          <div class="emoji-option" data-emoji="🥘">🥘</div>
-          <div class="emoji-option" data-emoji="🍛">🍛</div>
-          <div class="emoji-option" data-emoji="🥩">🥩</div>
-          <div class="emoji-option" data-emoji="🍗">🍗</div>
-          <div class="emoji-option" data-emoji="🥦">🥦</div>
-          <div class="emoji-option" data-emoji="🌮">🌮</div>
-          <div class="emoji-option" data-emoji="🍜">🍜</div>
-          <div class="emoji-option" data-emoji="🥣">🥣</div>
-          <div class="emoji-option" data-emoji="🍱">🍱</div>
-        </div>
-      </div>
-    </div>
-    <div class="sheet-footer">
-      <button class="btn-full primary" id="saveMealBtn">Create Meal</button>
-    </div>
-  </div>
-
-  <!-- ===== MEAL DETAIL SHEET ===== -->
-  <div class="sheet" id="mealDetailSheet">
-    <div class="sheet-handle"></div>
-    <div class="sheet-header">
-      <span class="sheet-title">Ingredients</span>
-      <button class="sheet-close" id="mealDetailClose">✕</button>
-    </div>
-    <div class="meal-detail-meta">
-      <div class="meal-detail-emoji" id="detailEmoji"></div>
-      <div class="meal-detail-info">
-        <div class="meal-detail-name" id="detailMealName"></div>
-        <div class="meal-detail-progress" id="detailProgress"></div>
-      </div>
-    </div>
-    <div class="meal-section-label">Ingredients — tap to mark in stock</div>
-    <div id="ingredientList"></div>
-    <div class="add-ing-row">
-      <input class="add-ing-input" id="ingNameInput" placeholder="Add ingredient…" autocomplete="off" />
-      <button class="add-ing-btn" id="addIngBtn">Add</button>
-    </div>
-    <div class="ing-suggestions" id="ingSuggestions"></div>
-    <button class="shop-missing-btn" id="shopMissingBtn">🛒 Add missing to shopping list</button>
-  </div>
 
 </div>
 
@@ -951,8 +675,6 @@ function buildInitialState() {
       restockAfter: null, tripsSince: 0,
       lastPurchased: null, addedAt: Date.now()
     })),
-    meals: [],
-    weekPlan: { monday:[], tuesday:[], wednesday:[], thursday:[], friday:[], saturday:[], sunday:[] },
     tripCount: 0,
     lastTripDate: null,
   };
@@ -963,8 +685,6 @@ let state = {};
 
 // ── Ensure all required fields exist on state ────────────────────
 function ensureStateFields() {
-  if (!state.meals)    state.meals    = [];
-  if (!state.weekPlan) state.weekPlan = { monday:[], tuesday:[], wednesday:[], thursday:[], friday:[], saturday:[], sunday:[] };
   if (!state.items)    state.items    = [];
 }
 
@@ -993,14 +713,6 @@ let addToList       = true;
 let restockTargetId = null;
 let invFilter       = 'all';
 let invStoreFilter  = null;
-let activeMealId    = null;
-let selectedEmoji   = '🍝';
-let currentMealDay  = 'all';
-
-const DAYS = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
-const DAY_LABELS = { monday:'Monday', tuesday:'Tuesday', wednesday:'Wednesday', thursday:'Thursday', friday:'Friday', saturday:'Saturday', sunday:'Sunday' };
-const DAY_SHORT  = { monday:'Mon', tuesday:'Tue', wednesday:'Wed', thursday:'Thu', friday:'Fri', saturday:'Sat', sunday:'Sun' };
-
 // ================================================================
 // HELPERS
 // ================================================================
@@ -1133,264 +845,9 @@ function renderInventory() {
   });
 }
 
-// ================================================================
-// RENDER: MEAL PREP
-// ================================================================
-function renderMealPrep() {
-  const container = document.getElementById('mealprep-container');
-  const subtitle  = document.getElementById('mp-subtitle');
-  const meals     = state.meals || [];
-
-  // Update day dots on tabs
-  document.querySelectorAll('.day-tab[data-day]').forEach(tab => {
-    const day = tab.dataset.day;
-    if (day === 'all') return;
-    const hasMeals = (state.weekPlan[day]||[]).length > 0;
-    tab.classList.toggle('has-meals', hasMeals);
-  });
-
-  if (currentMealDay === 'all') {
-    // ── ALL MEALS VIEW ──────────────────────────────────────────
-    subtitle.textContent = `${meals.length} meal${meals.length!==1?'s':''} saved`;
-
-    if (!meals.length) {
-      container.innerHTML = `<div class="empty-state"><div class="empty-icon">🍳</div><div class="empty-title">No meals yet</div><div class="empty-subtitle">Tap + to create your first meal prep recipe and track your ingredients.</div></div>`;
-      return;
-    }
-
-    container.innerHTML = meals.map(meal => {
-      const total   = meal.ingredients.length;
-      const inStock = meal.ingredients.filter(i => i.inStock).length;
-      const pct     = total > 0 ? Math.round(inStock / total * 100) : 0;
-      const missing = total - inStock;
-      // Which days is this meal planned on?
-      const plannedDays = DAYS.filter(d => (state.weekPlan[d]||[]).includes(meal.id));
-      const dayPills    = plannedDays.map(d => `<span style="font-size:10px;font-weight:700;background:var(--surface-2);color:var(--text-muted);border-radius:4px;padding:1px 5px;">${DAY_SHORT[d]}</span>`).join('');
-      return `<div class="meal-card" data-mealid="${meal.id}">
-        <div class="meal-emoji-wrap">${meal.emoji||'🍽️'}</div>
-        <div class="meal-card-info">
-          <div class="meal-name">${esc(meal.name)}</div>
-          <div class="meal-meta">${total} ingredient${total!==1?'s':''} · ${inStock}/${total} in stock${missing>0?' · <span style="color:var(--warn-text)">'+missing+' missing</span>':' · <span style="color:var(--primary)">✓ Ready</span>'}</div>
-          ${plannedDays.length ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:6px;">${dayPills}</div>` : ''}
-          ${total>0?`<div class="meal-progress-bar" style="margin-top:7px"><div class="meal-progress-fill" style="width:${pct}%"></div></div>`:''}
-        </div>
-        <div class="meal-card-actions">
-          <button class="meal-action-btn shop" data-shopid="${meal.id}" title="Add missing to list">🛒</button>
-          <button class="meal-action-btn del"  data-delid="${meal.id}"  title="Delete meal">🗑</button>
-        </div>
-      </div>`;
-    }).join('');
-
-    container.querySelectorAll('.meal-card').forEach(card => {
-      card.addEventListener('click', e => {
-        if (e.target.closest('[data-shopid]') || e.target.closest('[data-delid]')) return;
-        openMealDetail(card.dataset.mealid);
-      });
-    });
-    container.querySelectorAll('[data-shopid]').forEach(b => b.addEventListener('click', () => shopMissingIngredients(b.dataset.shopid)));
-    container.querySelectorAll('[data-delid]').forEach(b  => b.addEventListener('click', () => deleteMeal(b.dataset.delid)));
-
-  } else {
-    // ── DAY VIEW ────────────────────────────────────────────────
-    const day      = currentMealDay;
-    const dayName  = DAY_LABELS[day];
-    const mealIds  = state.weekPlan[day] || [];
-    const dayMeals = mealIds.map(id => meals.find(m => m.id === id)).filter(Boolean);
-
-    subtitle.textContent = `${dayName} — ${dayMeals.length} meal${dayMeals.length!==1?'s':''}`;
-
-    // Check how many meals across the week are planned
-    const totalMissing = dayMeals.reduce((acc, meal) => acc + meal.ingredients.filter(i => !i.inStock).length, 0);
-
-    let html = `<div class="day-banner">
-      <div>
-        <div class="day-banner-text">📅 ${dayName}</div>
-        <div class="day-banner-sub">${dayMeals.length ? `${dayMeals.length} meal${dayMeals.length!==1?'s':''} planned · ${totalMissing} ingredient${totalMissing!==1?'s':''} missing` : 'No meals planned yet'}</div>
-      </div>
-      <button class="assign-btn" id="openAssignBtn">+ Plan</button>
-    </div>`;
-
-    if (!dayMeals.length) {
-      html += `<div class="empty-state" style="padding:32px 32px"><div class="empty-icon">📋</div><div class="empty-title">Nothing planned</div><div class="empty-subtitle">Tap + Plan to add meals to ${dayName}.</div></div>`;
-    } else {
-      html += dayMeals.map(meal => {
-        const total   = meal.ingredients.length;
-        const inStock = meal.ingredients.filter(i => i.inStock).length;
-        const pct     = total > 0 ? Math.round(inStock / total * 100) : 0;
-        const missing = total - inStock;
-        return `<div class="day-meal-card" data-mealid="${meal.id}">
-          <div class="meal-emoji-wrap">${meal.emoji||'🍽️'}</div>
-          <div class="meal-card-info">
-            <div class="meal-name">${esc(meal.name)}</div>
-            <div class="meal-meta">${inStock}/${total} in stock${missing>0?' · <span style="color:var(--warn-text)">'+missing+' missing</span>':' · <span style="color:var(--primary)">✓ Ready</span>'}</div>
-            ${total>0?`<div class="meal-progress-bar" style="margin-top:7px"><div class="meal-progress-fill" style="width:${pct}%"></div></div>`:''}
-          </div>
-          <button class="day-remove-btn" data-removeid="${meal.id}" title="Remove from ${dayName}">✕</button>
-        </div>`;
-      }).join('');
-
-      if (totalMissing > 0) {
-        html += `<button class="shop-day-btn" id="shopDayBtn">🛒 Add ${totalMissing} missing item${totalMissing!==1?'s':''} to list</button>`;
-      }
-    }
-
-    container.innerHTML = html;
-
-    document.getElementById('openAssignBtn')?.addEventListener('click', () => openAssignSheet(day));
-
-    container.querySelectorAll('.day-meal-card').forEach(card => {
-      card.addEventListener('click', e => {
-        if (e.target.closest('.day-remove-btn')) return;
-        openMealDetail(card.dataset.mealid);
-      });
-    });
-    container.querySelectorAll('.day-remove-btn').forEach(b =>
-      b.addEventListener('click', () => { removeMealFromDay(b.dataset.removeid, day); })
-    );
-    document.getElementById('shopDayBtn')?.addEventListener('click', () => shopDayIngredients(day));
-  }
-}
-
-// ================================================================
-// WEEK PLAN ACTIONS
-// ================================================================
-function openAssignSheet(day) {
-  const dayName = DAY_LABELS[day];
-  document.getElementById('assignSheetTitle').textContent = `Plan ${dayName}`;
-  renderAssignSheet(day);
-  openSheet('assignSheet');
-}
-
-function renderAssignSheet(day) {
-  const list     = document.getElementById('assignMealList');
-  const meals    = state.meals || [];
-  const assigned = new Set(state.weekPlan[day] || []);
-
-  if (!meals.length) {
-    list.innerHTML = `<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">No meals yet — tap <strong style="color:var(--primary)">＋ Create New Meal</strong> above to add one.</div>`;
-    return;
-  }
-
-  list.innerHTML = meals.map(meal => {
-    const total   = meal.ingredients.length;
-    const inStock = meal.ingredients.filter(i => i.inStock).length;
-    const checked = assigned.has(meal.id);
-    return `<div class="assign-meal-row" data-assignid="${meal.id}">
-      <div class="assign-check ${checked?'checked':[]}">
-        <span class="assign-check-icon">✓</span>
-      </div>
-      <div style="font-size:22px;flex-shrink:0">${meal.emoji||'🍽️'}</div>
-      <div class="assign-meal-info">
-        <div class="assign-meal-name">${esc(meal.name)}</div>
-        <div class="assign-meal-meta">${total} ingredient${total!==1?'s':''} · ${inStock} in stock</div>
-      </div>
-    </div>`;
-  }).join('');
-
-  list.querySelectorAll('.assign-meal-row').forEach(row => {
-    row.addEventListener('click', () => {
-      const id  = row.dataset.assignid;
-      const chk = row.querySelector('.assign-check');
-      const plan = state.weekPlan[day] = state.weekPlan[day] || [];
-      const idx  = plan.indexOf(id);
-      if (idx >= 0) { plan.splice(idx,1); chk.classList.remove('checked'); }
-      else           { plan.push(id);     chk.classList.add('checked'); }
-      saveState();
-      renderMealPrep(); // update dots live
-    });
-  });
-}
-
-function removeMealFromDay(mealId, day) {
-  const plan = state.weekPlan[day] || [];
-  state.weekPlan[day] = plan.filter(id => id !== mealId);
-  saveState(); renderMealPrep();
-}
-
-function shopDayIngredients(day) {
-  const mealIds  = state.weekPlan[day] || [];
-  const meals    = mealIds.map(id => state.meals.find(m => m.id === id)).filter(Boolean);
-  let added = 0;
-  meals.forEach(meal => {
-    meal.ingredients.filter(i => !i.inStock).forEach(ing => {
-      if (ing.inventoryId) {
-        const item = state.items.find(i => i.id === ing.inventoryId);
-        if (item && !item.onList) { item.onList = true; item.tripsSince = 0; added++; }
-      } else {
-        const newItem = { id:uid(), name:ing.name, category:'other', stores:[currentStore],
-          quantity:1, unit:'', onList:true, checked:false, restockAfter:null,
-          tripsSince:0, lastPurchased:null, addedAt:Date.now() };
-        state.items.push(newItem); ing.inventoryId = newItem.id; added++;
-      }
-    });
-  });
-  saveState();
-  // Jump to list view
-  currentView = 'list';
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.view==='list'));
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('list-view').classList.add('active');
-  document.querySelector('.store-tabs').style.display = 'flex';
-  document.getElementById('clearCheckedBtn').style.display = '';
-  renderList();
-}
-
-// ================================================================
-// RENDER: MEAL DETAIL
-// ================================================================
-function renderMealDetail() {
-  if (!activeMealId) return;
-  const meal = state.meals.find(m => m.id === activeMealId);
-  if (!meal) return;
-
-  const total   = meal.ingredients.length;
-  const inStock = meal.ingredients.filter(i => i.inStock).length;
-
-  document.getElementById('detailEmoji').textContent = meal.emoji || '🍽️';
-  document.getElementById('detailMealName').textContent = meal.name;
-  document.getElementById('detailProgress').textContent =
-    total === 0 ? 'No ingredients yet' :
-    inStock === total ? `✓ All ${total} ingredients in stock` :
-    `${inStock} of ${total} in stock · ${total - inStock} missing`;
-
-  const list = document.getElementById('ingredientList');
-  if (!total) {
-    list.innerHTML = `<div style="padding:20px;text-align:center;color:var(--text-muted);font-size:14px;">No ingredients yet — add one below</div>`;
-    return;
-  }
-
-  list.innerHTML = meal.ingredients.map(ing => {
-    const invItem = ing.inventoryId ? state.items.find(i => i.id === ing.inventoryId) : null;
-    const alreadyOnList = invItem && invItem.onList;
-    return `<div class="ingredient-row">
-      <div class="ing-check ${ing.inStock?'in-stock':''}" data-ingid="${ing.id}">
-        <span class="ing-check-icon">✓</span>
-      </div>
-      <div class="ing-info">
-        <div class="ing-name ${ing.inStock?'':'out-of-stock'}">${esc(ing.name)}</div>
-        ${ing.qty?`<div class="ing-qty">${esc(ing.qty)}</div>`:''}
-      </div>
-      ${!ing.inStock && !alreadyOnList ? `<button class="ing-add-btn" data-ingid="${ing.id}">+ List</button>` : ''}
-      ${!ing.inStock && alreadyOnList  ? `<span style="font-size:11px;color:var(--primary);font-weight:700;">On list</span>` : ''}
-      <button class="ing-del-btn" data-ingid="${ing.id}">✕</button>
-    </div>`;
-  }).join('');
-
-  list.querySelectorAll('.ing-check').forEach(el =>
-    el.addEventListener('click', () => toggleIngredientStock(el.dataset.ingid))
-  );
-  list.querySelectorAll('.ing-add-btn').forEach(btn =>
-    btn.addEventListener('click', () => addIngredientToShoppingList(btn.dataset.ingid))
-  );
-  list.querySelectorAll('.ing-del-btn').forEach(btn =>
-    btn.addEventListener('click', () => deleteIngredient(btn.dataset.ingid))
-  );
-}
-
 function renderAll() {
   renderList();
   if (currentView === 'inventory') renderInventory();
-  if (currentView === 'mealprep')  renderMealPrep();
 }
 
 // ================================================================
@@ -1435,120 +892,6 @@ function deleteItem(id) {
   if (!it || !confirm(`Remove "${it.name}" from inventory?`)) return;
   state.items = state.items.filter(i => i.id !== id);
   saveState(); renderInventory();
-}
-
-// ================================================================
-// ACTIONS: MEALS
-// ================================================================
-function saveMeal() {
-  const name = document.getElementById('mealNameInput').value.trim();
-  const el   = document.getElementById('mealNameInput');
-  if (!name) { el.classList.add('error'); el.focus(); return; }
-  el.classList.remove('error');
-  const newMeal = { id: uid(), name, emoji: selectedEmoji, ingredients: [], createdAt: Date.now() };
-  state.meals.push(newMeal);
-  // Auto-assign to the current day if the user created this from a day view
-  if (currentMealDay && currentMealDay !== 'all') {
-    if (!state.weekPlan[currentMealDay]) state.weekPlan[currentMealDay] = [];
-    state.weekPlan[currentMealDay].push(newMeal.id);
-  }
-  saveState(); closeSheet('createMealSheet'); renderMealPrep();
-}
-
-function deleteMeal(id) {
-  const meal = state.meals.find(m => m.id === id);
-  if (!meal || !confirm(`Delete "${meal.name}"?`)) return;
-  state.meals = state.meals.filter(m => m.id !== id);
-  saveState(); renderMealPrep();
-}
-
-function openMealDetail(id) {
-  activeMealId = id;
-  const meal = state.meals.find(m => m.id === id);
-  if (!meal) return;
-  document.getElementById('ingNameInput').value = '';
-  hideIngSuggestions();
-  renderMealDetail();
-  openSheet('mealDetailSheet');
-}
-
-function toggleIngredientStock(ingId) {
-  const meal = state.meals.find(m => m.id === activeMealId);
-  if (!meal) return;
-  const ing = meal.ingredients.find(i => i.id === ingId);
-  if (!ing) return;
-  ing.inStock = !ing.inStock;
-  saveState(); renderMealDetail(); renderMealPrep();
-}
-
-function addIngredientToShoppingList(ingId) {
-  const meal = state.meals.find(m => m.id === activeMealId);
-  if (!meal) return;
-  const ing = meal.ingredients.find(i => i.id === ingId);
-  if (!ing) return;
-
-  if (ing.inventoryId) {
-    const item = state.items.find(i => i.id === ing.inventoryId);
-    if (item) { item.onList = true; item.tripsSince = 0; saveState(); renderMealDetail(); renderAll(); return; }
-  }
-  // Not in inventory: add as new item
-  const newItem = { id:uid(), name:ing.name, category:'other', stores:[currentStore],
-    quantity:1, unit:'', onList:true, checked:false, restockAfter:null,
-    tripsSince:0, lastPurchased:null, addedAt:Date.now() };
-  state.items.push(newItem);
-  ing.inventoryId = newItem.id;
-  saveState(); renderMealDetail(); renderAll();
-}
-
-function shopMissingIngredients(mealId) {
-  const meal = state.meals.find(m => m.id === mealId);
-  if (!meal) return;
-  let added = 0;
-  meal.ingredients.filter(i => !i.inStock).forEach(ing => {
-    if (ing.inventoryId) {
-      const item = state.items.find(i => i.id === ing.inventoryId);
-      if (item && !item.onList) { item.onList = true; item.tripsSince = 0; added++; }
-    } else {
-      const newItem = { id:uid(), name:ing.name, category:'other', stores:[currentStore],
-        quantity:1, unit:'', onList:true, checked:false, restockAfter:null,
-        tripsSince:0, lastPurchased:null, addedAt:Date.now() };
-      state.items.push(newItem);
-      ing.inventoryId = newItem.id;
-      added++;
-    }
-  });
-  saveState(); renderAll(); renderMealPrep();
-  if (added > 0) {
-    // Brief feedback
-    const btn = document.querySelector(`[data-shopid="${mealId}"]`);
-    if (btn) { const orig = btn.textContent; btn.textContent = '✓'; setTimeout(() => btn.textContent = orig, 1200); }
-  }
-}
-
-function addIngredient() {
-  const meal = state.meals.find(m => m.id === activeMealId);
-  if (!meal) return;
-  const input = document.getElementById('ingNameInput');
-  const name  = input.value.trim();
-  if (!name) return;
-
-  // Try to link to inventory item
-  const invItem = state.items.find(i => i.name.toLowerCase() === name.toLowerCase());
-  meal.ingredients.push({
-    id: uid(), name: invItem ? invItem.name : name,
-    inventoryId: invItem ? invItem.id : null,
-    inStock: false, qty: ''
-  });
-  input.value = '';
-  hideIngSuggestions();
-  saveState(); renderMealDetail(); renderMealPrep();
-}
-
-function deleteIngredient(ingId) {
-  const meal = state.meals.find(m => m.id === activeMealId);
-  if (!meal) return;
-  meal.ingredients = meal.ingredients.filter(i => i.id !== ingId);
-  saveState(); renderMealDetail(); renderMealPrep();
 }
 
 // ================================================================
@@ -1659,32 +1002,6 @@ function showSuggestions(query) {
 function hideSuggestions() { document.getElementById('suggestions').classList.remove('visible'); }
 
 // ================================================================
-// AUTOCOMPLETE: INGREDIENT
-// ================================================================
-function showIngSuggestions(query) {
-  const el = document.getElementById('ingSuggestions');
-  if (!query) { el.classList.remove('visible'); return; }
-  const q = query.toLowerCase();
-  const matches = state.items.filter(i => i.name.toLowerCase().includes(q)).slice(0,6);
-  if (!matches.length) { el.classList.remove('visible'); return; }
-  el.innerHTML = matches.map(it => {
-    const cat = getCat(it.category);
-    return `<div class="ing-sug-item" data-name="${esc(it.name)}">
-      <span>${esc(it.name)}</span><span class="ing-sug-cat">${cat.icon} ${cat.name}</span>
-    </div>`;
-  }).join('');
-  el.classList.add('visible');
-  el.querySelectorAll('.ing-sug-item').forEach(si =>
-    si.addEventListener('mousedown', e => {
-      e.preventDefault();
-      document.getElementById('ingNameInput').value = si.dataset.name;
-      el.classList.remove('visible');
-    })
-  );
-}
-function hideIngSuggestions() { document.getElementById('ingSuggestions').classList.remove('visible'); }
-
-// ================================================================
 // TOGGLE & STORE CHIPS
 // ================================================================
 function updateStoreChips() {
@@ -1727,40 +1044,13 @@ function init() {
       document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
       document.getElementById(`${currentView}-view`).classList.add('active');
 
-      // Show/hide store tabs and clear-checked based on view
-      const header = document.querySelector('.store-tabs');
-      const clearBtn = document.getElementById('clearCheckedBtn');
-      if (currentView === 'mealprep') {
-        header.style.display = 'none';
-        clearBtn.style.display = 'none';
-      } else {
-        header.style.display = 'flex';
-        clearBtn.style.display = '';
-      }
-
       if (currentView === 'inventory') renderInventory();
-      if (currentView === 'mealprep')  renderMealPrep();
     })
   );
 
-  // FAB — context-aware
+  // FAB
   document.getElementById('fabBtn').addEventListener('click', () => {
-    if (currentView === 'mealprep') {
-      if (currentMealDay !== 'all') {
-        // On a day view → open assign sheet for that day
-        openAssignSheet(currentMealDay);
-      } else {
-        // On all-meals view → create new meal
-        document.getElementById('mealNameInput').value = '';
-        document.getElementById('mealNameInput').classList.remove('error');
-        selectedEmoji = '🍝';
-        document.querySelectorAll('.emoji-option').forEach(e => e.classList.toggle('selected', e.dataset.emoji === '🍝'));
-        openSheet('createMealSheet');
-        setTimeout(() => document.getElementById('mealNameInput').focus(), 350);
-      }
-    } else {
-      openAddSheet();
-    }
+    openAddSheet();
   });
 
   // Add item sheet close
@@ -1809,59 +1099,6 @@ function init() {
   document.getElementById('restockClose').addEventListener('click', () => closeSheet('restockSheet'));
   document.getElementById('restockSave').addEventListener('click', saveRestock);
   document.getElementById('restockClear').addEventListener('click', clearRestock);
-
-  // Day tabs
-  document.querySelectorAll('.day-tab').forEach(tab =>
-    tab.addEventListener('click', () => {
-      currentMealDay = tab.dataset.day;
-      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      renderMealPrep();
-    })
-  );
-
-  // Assign sheet
-  document.getElementById('assignSheetClose').addEventListener('click', () => closeSheet('assignSheet'));
-  document.getElementById('assignDoneBtn').addEventListener('click', () => closeSheet('assignSheet'));
-  document.getElementById('assignCreateMealBtn').addEventListener('click', () => {
-    closeSheet('assignSheet');
-    document.getElementById('mealNameInput').value = '';
-    document.getElementById('mealNameInput').classList.remove('error');
-    selectedEmoji = '🍝';
-    document.querySelectorAll('.emoji-option').forEach(e => e.classList.toggle('selected', e.dataset.emoji === '🍝'));
-    openSheet('createMealSheet');
-    setTimeout(() => document.getElementById('mealNameInput').focus(), 350);
-  });
-
-  // Create meal sheet
-  document.getElementById('createMealClose').addEventListener('click', () => closeSheet('createMealSheet'));
-  document.getElementById('saveMealBtn').addEventListener('click', saveMeal);
-  document.getElementById('mealNameInput').addEventListener('keydown', e => { if (e.key==='Enter') saveMeal(); });
-  document.querySelectorAll('.emoji-option').forEach(el =>
-    el.addEventListener('click', () => {
-      selectedEmoji = el.dataset.emoji;
-      document.querySelectorAll('.emoji-option').forEach(e => e.classList.toggle('selected', e === el));
-    })
-  );
-
-  // Meal detail sheet
-  document.getElementById('mealDetailClose').addEventListener('click', () => closeSheet('mealDetailSheet'));
-  document.getElementById('addIngBtn').addEventListener('click', addIngredient);
-  document.getElementById('ingNameInput').addEventListener('input', e => showIngSuggestions(e.target.value));
-  document.getElementById('ingNameInput').addEventListener('blur', () => setTimeout(hideIngSuggestions, 180));
-  document.getElementById('ingNameInput').addEventListener('keydown', e => { if (e.key==='Enter') addIngredient(); });
-  document.getElementById('shopMissingBtn').addEventListener('click', () => {
-    if (activeMealId) shopMissingIngredients(activeMealId);
-    closeSheet('mealDetailSheet');
-    // Switch to list view
-    currentView = 'list';
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b.dataset.view==='list'));
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    document.getElementById('list-view').classList.add('active');
-    document.querySelector('.store-tabs').style.display = 'flex';
-    document.getElementById('clearCheckedBtn').style.display = '';
-    renderList();
-  });
 
   // ── Share button ───────────────────────────────────────────────
   document.getElementById('shareBtn').addEventListener('click', () => {
@@ -1912,7 +1149,6 @@ function init() {
     state = data;
     ensureStateFields();
     renderAll();
-    if (currentView === 'mealprep') renderMealPrep();
     setSyncDot('online');
   });
 
