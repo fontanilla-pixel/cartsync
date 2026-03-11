@@ -253,6 +253,37 @@
     .pill-tab { flex-shrink: 0; padding: 6px 14px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--surface-2); font-size: 12px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.15s; font-family: inherit; }
     .pill-tab.active { background: var(--primary); border-color: var(--primary); color: #0c1510; }
 
+    /* ===== MEAL PREP VIEW ===== */
+    .mp-topbar { padding: 16px 16px 8px; }
+    .mp-title { font-size: 22px; font-weight: 800; color: var(--text); }
+    .mp-subtitle { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+    .mp-card {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--surface); border-radius: var(--radius-sm);
+      padding: 14px 16px; margin: 0 12px 8px; border: 1px solid var(--border);
+      cursor: pointer; gap: 12px; transition: border-color 0.15s;
+    }
+    .mp-card:active { border-color: var(--primary); }
+    .mp-card-info { flex: 1; min-width: 0; }
+    .mp-card-name { font-size: 16px; font-weight: 700; color: var(--text); }
+    .mp-card-date { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+    .mp-card-badge { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-pale); border-radius: 6px; padding: 2px 8px; flex-shrink: 0; white-space: nowrap; }
+    .meal-section-label { padding: 12px 20px 8px; font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; border-top: 1px solid var(--border); }
+    .ing-row { display: flex; align-items: center; gap: 12px; padding: 11px 20px; border-bottom: 1px solid var(--border); }
+    .ing-row:last-child { border-bottom: none; }
+    .ing-name { flex: 1; font-size: 14px; color: var(--text); }
+    .ing-add-list { background: none; border: 1.5px solid var(--border); border-radius: 7px; padding: 4px 10px; font-size: 11px; font-weight: 700; color: var(--text-muted); cursor: pointer; white-space: nowrap; flex-shrink: 0; font-family: inherit; transition: all 0.15s; }
+    .ing-add-list.added { border-color: var(--primary); color: var(--primary); background: var(--primary-pale); }
+    .ing-del { background: none; border: none; font-size: 14px; cursor: pointer; padding: 4px; color: var(--text-muted); opacity: 0.4; flex-shrink: 0; }
+    .ing-del:active { opacity: 1; }
+    .add-ing-row { display: flex; align-items: center; gap: 10px; padding: 12px 20px 8px; }
+    .add-ing-input { flex: 1; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 15px; font-family: inherit; background: var(--surface-2); color: var(--text); outline: none; -webkit-appearance: none; }
+    .add-ing-input:focus { border-color: var(--primary); }
+    .add-ing-btn { padding: 10px 14px; background: var(--primary); color: #0c1510; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; flex-shrink: 0; }
+    .add-ing-btn:active { background: var(--primary-light); }
+    .meal-del-btn { margin: 8px 20px 16px; width: calc(100% - 40px); padding: 12px; background: none; border: 1.5px solid var(--border); color: var(--text-muted); border-radius: var(--radius); font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+    .meal-del-btn:active { border-color: var(--danger); color: var(--danger); }
+
     /* ===== ANIMATIONS ===== */
     @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
     .category-group, .inv-item { animation: fadeSlideIn 0.18s ease; }
@@ -344,6 +375,15 @@
       <div id="inventory-container"></div>
     </div>
 
+    <!-- MEAL PREP VIEW -->
+    <div id="mealprep-view" class="view">
+      <div class="mp-topbar">
+        <div class="mp-title">🍳 Meal Prep</div>
+        <div class="mp-subtitle" id="mp-subtitle"></div>
+      </div>
+      <div id="mealprep-container"></div>
+    </div>
+
   </main>
 
   <!-- BOTTOM NAV -->
@@ -353,6 +393,9 @@
     </button>
     <button class="nav-btn" data-view="inventory">
       <span class="nav-icon">📦</span>Inventory
+    </button>
+    <button class="nav-btn" data-view="mealprep">
+      <span class="nav-icon">🍳</span>Meal Prep
     </button>
   </nav>
 
@@ -429,6 +472,45 @@
     </div>
   </div>
 
+
+  <!-- ===== CREATE MEAL SHEET ===== -->
+  <div class="sheet" id="createMealSheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <span class="sheet-title">New Meal</span>
+      <button class="sheet-close" id="createMealClose">✕</button>
+    </div>
+    <div class="sheet-body">
+      <div class="form-group">
+        <label class="form-label">Dish Name</label>
+        <input class="form-input" id="mealNameInput" placeholder="e.g. Pasta alla Vodka" autocomplete="off" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Prep Date</label>
+        <input class="form-input" id="mealDateInput" type="date" />
+      </div>
+    </div>
+    <div class="sheet-footer">
+      <button class="btn-full primary" id="saveMealBtn">Add Meal</button>
+    </div>
+  </div>
+
+  <!-- ===== MEAL DETAIL SHEET ===== -->
+  <div class="sheet" id="mealDetailSheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <span class="sheet-title" id="detailMealTitle">Meal</span>
+      <button class="sheet-close" id="mealDetailClose">✕</button>
+    </div>
+    <div id="mealDetailMeta" style="padding:10px 20px 0;"></div>
+    <div class="meal-section-label">Ingredients — tap to add to shopping list</div>
+    <div id="ingredientList"></div>
+    <div class="add-ing-row">
+      <input class="add-ing-input" id="ingNameInput" placeholder="Add ingredient…" autocomplete="off" />
+      <button class="add-ing-btn" id="addIngBtn">Add</button>
+    </div>
+    <button class="meal-del-btn" id="deleteMealBtn">🗑 Delete Meal</button>
+  </div>
 
 </div>
 
@@ -675,6 +757,7 @@ function buildInitialState() {
       restockAfter: null, tripsSince: 0,
       lastPurchased: null, addedAt: Date.now()
     })),
+    mealPrep: [],
     tripCount: 0,
     lastTripDate: null,
   };
@@ -686,6 +769,7 @@ let state = {};
 // ── Ensure all required fields exist on state ────────────────────
 function ensureStateFields() {
   if (!state.items)    state.items    = [];
+  if (!state.mealPrep) state.mealPrep = [];
 }
 
 // ── Merge new STARTER_ITEMS into existing state ──────────────────
@@ -713,6 +797,8 @@ let addToList       = true;
 let restockTargetId = null;
 let invFilter       = 'all';
 let invStoreFilter  = null;
+let currentMealId   = null;
+
 // ================================================================
 // HELPERS
 // ================================================================
@@ -848,6 +934,139 @@ function renderInventory() {
 function renderAll() {
   renderList();
   if (currentView === 'inventory') renderInventory();
+  if (currentView === 'mealprep')  renderMealPrep();
+}
+
+// ================================================================
+// RENDER: MEAL PREP
+// ================================================================
+function renderMealPrep() {
+  const container = document.getElementById('mealprep-container');
+  const subtitle  = document.getElementById('mp-subtitle');
+  const meals     = state.mealPrep || [];
+
+  subtitle.textContent = `${meals.length} meal${meals.length !== 1 ? 's' : ''} planned`;
+
+  if (!meals.length) {
+    container.innerHTML = `<div class="empty-state"><div class="empty-icon">🍳</div><div class="empty-title">No meals planned</div><div class="empty-subtitle">Tap ＋ to add your first meal prep.</div></div>`;
+    return;
+  }
+
+  container.innerHTML = meals.map(meal => {
+    const dateStr  = meal.date ? new Date(meal.date + 'T00:00:00').toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) : 'No date set';
+    const ingCount = meal.ingredients.length;
+    const onList   = meal.ingredients.filter(i => i.onList).length;
+    return `<div class="mp-card" data-mealid="${meal.id}">
+      <div class="mp-card-info">
+        <div class="mp-card-name">🍽️ ${esc(meal.name)}</div>
+        <div class="mp-card-date">📅 ${dateStr}</div>
+      </div>
+      ${ingCount ? `<div class="mp-card-badge">${onList}/${ingCount} listed</div>` : ''}
+    </div>`;
+  }).join('');
+
+  container.querySelectorAll('.mp-card').forEach(card =>
+    card.addEventListener('click', () => openMealDetail(card.dataset.mealid))
+  );
+}
+
+// ================================================================
+// ACTIONS: MEAL PREP
+// ================================================================
+function openCreateMealSheet() {
+  document.getElementById('mealNameInput').value = '';
+  document.getElementById('mealDateInput').value = '';
+  document.getElementById('mealNameInput').classList.remove('error');
+  openSheet('createMealSheet');
+  setTimeout(() => document.getElementById('mealNameInput').focus(), 350);
+}
+
+function saveMeal() {
+  const nameEl = document.getElementById('mealNameInput');
+  const name   = nameEl.value.trim();
+  if (!name) { nameEl.classList.add('error'); nameEl.focus(); return; }
+  nameEl.classList.remove('error');
+  const date = document.getElementById('mealDateInput').value;
+  state.mealPrep.push({ id: uid(), name, date, ingredients: [] });
+  saveState();
+  closeSheet('createMealSheet');
+  renderMealPrep();
+}
+
+function openMealDetail(id) {
+  currentMealId = id;
+  const meal = (state.mealPrep || []).find(m => m.id === id);
+  if (!meal) return;
+  document.getElementById('ingNameInput').value = '';
+  renderMealDetail();
+  openSheet('mealDetailSheet');
+}
+
+function renderMealDetail() {
+  const meal = (state.mealPrep || []).find(m => m.id === currentMealId);
+  if (!meal) return;
+
+  const dateStr = meal.date
+    ? new Date(meal.date + 'T00:00:00').toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' })
+    : 'No date set';
+
+  document.getElementById('detailMealTitle').textContent = meal.name;
+  document.getElementById('mealDetailMeta').innerHTML =
+    `<div style="font-size:13px;color:var(--text-muted);padding-bottom:4px;">📅 ${dateStr}</div>`;
+
+  const list = document.getElementById('ingredientList');
+  if (!meal.ingredients.length) {
+    list.innerHTML = `<div style="padding:14px 20px;color:var(--text-muted);font-size:14px;">No ingredients yet — add below</div>`;
+  } else {
+    list.innerHTML = meal.ingredients.map(ing => `
+      <div class="ing-row">
+        <span class="ing-name">${esc(ing.name)}</span>
+        <button class="ing-add-list ${ing.onList ? 'added' : ''}" data-ingid="${ing.id}">
+          ${ing.onList ? '✓ On list' : '+ Add to list'}
+        </button>
+        <button class="ing-del" data-delingid="${ing.id}">✕</button>
+      </div>`).join('');
+
+    list.querySelectorAll('.ing-add-list').forEach(btn =>
+      btn.addEventListener('click', () => addIngToShoppingList(btn.dataset.ingid))
+    );
+    list.querySelectorAll('.ing-del').forEach(btn =>
+      btn.addEventListener('click', () => {
+        const m = state.mealPrep.find(m => m.id === currentMealId);
+        if (m) { m.ingredients = m.ingredients.filter(i => i.id !== btn.dataset.delingid); saveState(); renderMealDetail(); renderMealPrep(); }
+      })
+    );
+  }
+}
+
+function addIngToShoppingList(ingId) {
+  const meal = state.mealPrep.find(m => m.id === currentMealId);
+  if (!meal) return;
+  const ing = meal.ingredients.find(i => i.id === ingId);
+  if (!ing || ing.onList) return;
+
+  // Try to find in inventory
+  const existing = state.items.find(i => i.name.toLowerCase() === ing.name.toLowerCase());
+  if (existing) {
+    existing.onList = true; existing.tripsSince = 0;
+  } else {
+    state.items.push({ id:uid(), name:ing.name, category:'other', stores:[currentStore],
+      quantity:1, unit:'', onList:true, checked:false, restockAfter:null,
+      tripsSince:0, lastPurchased:null, addedAt:Date.now() });
+  }
+  ing.onList = true;
+  saveState(); renderMealDetail(); renderMealPrep();
+}
+
+function addIngredient() {
+  const input = document.getElementById('ingNameInput');
+  const name  = input.value.trim();
+  if (!name) return;
+  const meal = state.mealPrep.find(m => m.id === currentMealId);
+  if (!meal) return;
+  meal.ingredients.push({ id: uid(), name, onList: false });
+  input.value = '';
+  saveState(); renderMealDetail(); renderMealPrep();
 }
 
 // ================================================================
@@ -1045,12 +1264,14 @@ function init() {
       document.getElementById(`${currentView}-view`).classList.add('active');
 
       if (currentView === 'inventory') renderInventory();
+      if (currentView === 'mealprep')  renderMealPrep();
     })
   );
 
-  // FAB
+  // FAB — context-aware
   document.getElementById('fabBtn').addEventListener('click', () => {
-    openAddSheet();
+    if (currentView === 'mealprep') openCreateMealSheet();
+    else openAddSheet();
   });
 
   // Add item sheet close
@@ -1099,6 +1320,22 @@ function init() {
   document.getElementById('restockClose').addEventListener('click', () => closeSheet('restockSheet'));
   document.getElementById('restockSave').addEventListener('click', saveRestock);
   document.getElementById('restockClear').addEventListener('click', clearRestock);
+
+  // ── Meal Prep sheets ───────────────────────────────────────────
+  document.getElementById('createMealClose').addEventListener('click', () => closeSheet('createMealSheet'));
+  document.getElementById('saveMealBtn').addEventListener('click', saveMeal);
+  document.getElementById('mealNameInput').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('mealDateInput').focus(); });
+
+  document.getElementById('mealDetailClose').addEventListener('click', () => closeSheet('mealDetailSheet'));
+  document.getElementById('addIngBtn').addEventListener('click', addIngredient);
+  document.getElementById('ingNameInput').addEventListener('keydown', e => { if (e.key === 'Enter') addIngredient(); });
+  document.getElementById('deleteMealBtn').addEventListener('click', () => {
+    const meal = state.mealPrep.find(m => m.id === currentMealId);
+    if (!meal || !confirm(`Delete "${meal.name}"?`)) return;
+    state.mealPrep = state.mealPrep.filter(m => m.id !== currentMealId);
+    currentMealId = null;
+    saveState(); closeSheet('mealDetailSheet'); renderMealPrep();
+  });
 
   // ── Share button ───────────────────────────────────────────────
   document.getElementById('shareBtn').addEventListener('click', () => {
