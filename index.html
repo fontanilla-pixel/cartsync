@@ -179,6 +179,9 @@
     .form-input:focus { border-color: var(--primary); }
     .form-input.error { border-color: var(--danger); }
     .form-input option { background: var(--surface); color: var(--text); }
+    /* Allow native date/time pickers on iOS — -webkit-appearance:none breaks them */
+    input[type="date"].form-input,
+    input[type="time"].form-input { -webkit-appearance: auto; appearance: auto; color-scheme: dark; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .store-checkboxes { display: flex; gap: 8px; }
     .store-chip {
@@ -767,9 +770,18 @@ function buildInitialState() {
 let state = {};
 
 // ── Ensure all required fields exist on state ────────────────────
+// Firebase drops empty arrays and converts arrays-with-items to objects.
+// This function restores everything back to proper JS arrays.
+function toArr(v) {
+  if (!v) return [];
+  if (Array.isArray(v)) return v;
+  return Object.values(v); // Firebase object → array
+}
 function ensureStateFields() {
-  if (!state.items)    state.items    = [];
-  if (!state.mealPrep) state.mealPrep = [];
+  state.items    = toArr(state.items);
+  state.mealPrep = toArr(state.mealPrep);
+  // Ensure every meal's ingredients is also a real array
+  state.mealPrep.forEach(meal => { meal.ingredients = toArr(meal.ingredients); });
 }
 
 // ── Merge new STARTER_ITEMS into existing state ──────────────────
@@ -987,6 +999,7 @@ function saveMeal() {
   if (!name) { nameEl.classList.add('error'); nameEl.focus(); return; }
   nameEl.classList.remove('error');
   const date = document.getElementById('mealDateInput').value;
+  state.mealPrep = toArr(state.mealPrep); // safety: ensure array before push
   state.mealPrep.push({ id: uid(), name, date, ingredients: [] });
   saveState();
   closeSheet('createMealSheet');
@@ -1064,6 +1077,7 @@ function addIngredient() {
   if (!name) return;
   const meal = state.mealPrep.find(m => m.id === currentMealId);
   if (!meal) return;
+  meal.ingredients = toArr(meal.ingredients); // safety: Firebase may have dropped the array
   meal.ingredients.push({ id: uid(), name, onList: false });
   input.value = '';
   saveState(); renderMealDetail(); renderMealPrep();
