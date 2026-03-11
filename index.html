@@ -636,6 +636,9 @@
       <span class="sheet-title" id="assignSheetTitle">Plan Day</span>
       <button class="sheet-close" id="assignSheetClose">✕</button>
     </div>
+    <div style="padding:10px 16px 0;">
+      <button class="btn-full" id="assignCreateMealBtn" style="background:var(--surface-2);border:1.5px dashed var(--primary);color:var(--primary);font-weight:600;font-size:14px;padding:10px;border-radius:12px;">＋ Create New Meal</button>
+    </div>
     <div class="sheet-body" style="padding:0">
       <div class="assign-meal-list" id="assignMealList"></div>
     </div>
@@ -1264,7 +1267,7 @@ function renderAssignSheet(day) {
   const assigned = new Set(state.weekPlan[day] || []);
 
   if (!meals.length) {
-    list.innerHTML = `<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">No meals yet — create one first.</div>`;
+    list.innerHTML = `<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:14px;">No meals yet — tap <strong style="color:var(--primary)">＋ Create New Meal</strong> above to add one.</div>`;
     return;
   }
 
@@ -1442,7 +1445,13 @@ function saveMeal() {
   const el   = document.getElementById('mealNameInput');
   if (!name) { el.classList.add('error'); el.focus(); return; }
   el.classList.remove('error');
-  state.meals.push({ id: uid(), name, emoji: selectedEmoji, ingredients: [], createdAt: Date.now() });
+  const newMeal = { id: uid(), name, emoji: selectedEmoji, ingredients: [], createdAt: Date.now() };
+  state.meals.push(newMeal);
+  // Auto-assign to the current day if the user created this from a day view
+  if (currentMealDay && currentMealDay !== 'all') {
+    if (!state.weekPlan[currentMealDay]) state.weekPlan[currentMealDay] = [];
+    state.weekPlan[currentMealDay].push(newMeal.id);
+  }
   saveState(); closeSheet('createMealSheet'); renderMealPrep();
 }
 
@@ -1814,6 +1823,15 @@ function init() {
   // Assign sheet
   document.getElementById('assignSheetClose').addEventListener('click', () => closeSheet('assignSheet'));
   document.getElementById('assignDoneBtn').addEventListener('click', () => closeSheet('assignSheet'));
+  document.getElementById('assignCreateMealBtn').addEventListener('click', () => {
+    closeSheet('assignSheet');
+    document.getElementById('mealNameInput').value = '';
+    document.getElementById('mealNameInput').classList.remove('error');
+    selectedEmoji = '🍝';
+    document.querySelectorAll('.emoji-option').forEach(e => e.classList.toggle('selected', e.dataset.emoji === '🍝'));
+    openSheet('createMealSheet');
+    setTimeout(() => document.getElementById('mealNameInput').focus(), 350);
+  });
 
   // Create meal sheet
   document.getElementById('createMealClose').addEventListener('click', () => closeSheet('createMealSheet'));
